@@ -1,0 +1,24 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<h1 id="username" align="center">{{ username }}</h1>
+<div>
+<h3 id="following" align="center">Following: {{ following }}</h3>
+    <h3 id="followers" align="center">Followers: {{ followers }}</h3>
+</div>
+<div id="buttondiv" align="center">
+<button type="button" class="btn btn-dark" id="followbtn"></button>
+</div><br>
+
+<div id="alltweetview">
+
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'network/inbox2.js' %}"></script>
+    <script src="{% static 'network/inbox.js' %}"></script>
+{% endblock %}

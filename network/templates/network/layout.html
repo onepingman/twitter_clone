@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Network</a>
+          
+            <div>
+              <ul class="navbar-nav mr-auto">
+
+                	<li class="nav-item">
+                  	    <a class="nav-link" href="#"><strong id="login_name">{{ user.username }}</strong></a>
+                	</li>
+
+                	<li class="nav-item" id="allposts">
+                  	    <a class="nav-link" href="{% url 'index' %}">All Posts</a>
+                	</li>
+                  {% if user.is_authenticated %}
+                    <li class="nav-item" id="following">
+                        <a class="nav-link" href="#" id="following2">Following</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+        
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+
+
+            {% if user.is_authenticated %}
+          <div class="col-md-8 mx-auto col-10">
+           <nav aria-label="Page navigation example">
+                <ul class="pagination" id="paginatorid">
+                <li class="page-item" id="paginatorid1"><a class="page-link" href="#0" >Previous</a></li>
+                <li class="page-item" id="paginatorid2"><a class="page-link" href="#0" ></a></li>
+                <li class="page-item" id="paginatorid3"><a class="page-link" href="#0" >Next</a></li>
+                </ul>
+            </nav>
+           </div>
+            {% endif %}
+        </div>
+    </body>
+</html>

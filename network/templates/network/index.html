@@ -1,0 +1,23 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<h1 id="username">{{ user.username }}</h1>
+
+<div class="row mb-3" id="newtweetview">
+    <div class="col-md-8 mx-auto col-10">
+        <form  id="tweetform" class="form-group" method="post">
+            {% csrf_token %}
+            <textarea class="form-control" name="content" placeholder="What's on your mind...." id="tweet-body"></textarea>
+            <button type="submit" value="send" class="btn btn-primary" id="tweetbutton">Tweet</button>
+        </form>
+    </div>
+</div>
+<div id="alltweetview">
+
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/inbox.js' %}"></script>
+{% endblock %}
